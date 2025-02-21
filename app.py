@@ -7,7 +7,10 @@ st.set_page_config( page_title="Data Manager", layout="wide")
 st.title("Data Manager")
 st.write("Convert your Files in CSV & Excel formats")
 
-uploaded_files=st.file_uploader("Upload your Files (CSV & Excel)",type=["csv", "xlsx"], accept_multiple_files=True)
+name = st.text_input("Enter your Name")
+choice = st.selectbox("choose file format",[".csv",".xlsx"])
+
+uploaded_files=st.file_uploader("Upload your Files (CSV & Excel)",type=[choice], accept_multiple_files=True)
 if uploaded_files:
     for file in uploaded_files:
         file_ext= os.path.splitext(file.name)[-1].lower()
@@ -25,7 +28,14 @@ if uploaded_files:
 
 
         st.write("Preview of given Data")
-        st.dataframe(df.head())
+        st.dataframe(df)
+        edit = st.radio("Want to edit your file" , ["No" ,"Yes"])
+        
+        if edit == "No":
+            print("don't wat to edit :(")
+        elif edit == "Yes":
+           edited_df = st.data_editor(df, num_rows="dynamic")
+           
 
         st.subheader("Data Cleaning Options")
         if st.checkbox(f"Clean Data for {file.name}"):
