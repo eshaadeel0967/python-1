@@ -32,7 +32,7 @@ if uploaded_files:
         edit = st.radio("Want to edit your file" , ["No" ,"Yes"])
         
         if edit == "No":
-            print("don't wat to edit :(")
+            print("don't want to edit :(")
         elif edit == "Yes":
            edited_df = st.data_editor(df, num_rows="dynamic")
            
