@@ -27,11 +27,11 @@ if uploaded_files:
         st.write(f"**File Size:** {file.size/1024}")
 
 
-        st.write("Preview of given Data")
-        st.dataframe(df)
         edit = st.radio("Want to edit your file" , ["No" ,"Yes"])
         
         if edit == "No":
+            st.write("Preview of given Data")
+            st.dataframe(df)
             print("don't want to edit :(")
         elif edit == "Yes":
            edited_df = st.data_editor(df, num_rows="dynamic")
